@@ -1,3 +1,4 @@
+import os
 import pinecone
 import gradio as gr
 from transformers import pipeline
@@ -11,6 +12,11 @@ reader = pipeline(tokenizer=model_name, model=model_name, task="question-answeri
 
 # load the retriever model from huggingface model hub
 retriever = SentenceTransformer("multi-qa-MiniLM-L6-cos-v1")
+
+pinecone.init(
+    api_key=os.environ['PINECONE_API_KEY'],
+    environment="us-west1-gcp"
+)
 
 index_name = "extractive-question-answering"
 index = pinecone.Index(index_name)
