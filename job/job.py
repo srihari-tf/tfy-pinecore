@@ -8,7 +8,6 @@ s3 = boto3.client('s3')
 s3.download_file('demo-bucket-tfy', 'input.csv', 'input.csv')
 
 df = pd.read_csv('input.csv')
-print(df.shape())
 
 pinecone.init(
     api_key=os.environ['PINECONE_API_KEY'],
